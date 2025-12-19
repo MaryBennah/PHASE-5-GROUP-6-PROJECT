@@ -1,6 +1,6 @@
 # Using historical demand, weather, calendar, and macroeconomic data, can we predict future daily electricity demand in Kenya?
 --
-## 1. Business Understanding (ADD / REFINE)
+## 1. Business Understanding
 Electricity demand forecasting is critical for power system planning and grid reliability. This project uses daily national electricity demand data from Kenya, combined with weather, calendar, and macroeconomic indicators, to predict future electricity demand. The final model captures seasonal and weather-driven demand patterns and provides a realistic forecasting tool for energy planners.
 ## Rationale (business value)
 This prediction is valuable for:
@@ -8,58 +8,45 @@ This prediction is valuable for:
    ###  2. Load forecasting for utilities and energy regulators
    ###  3. Reducing generation shortfalls and excess capacity costs
 
-**Problem Statement**
-Accurately forecasting daily national electricity demand in Kenya using historical demand, weather, calendar, and macroeconomic variables.
-
-**Why This Topic Matters**
-Electricity demand forecasting supports grid reliability, generation planning, and cost-efficient energy policy in fast-growing economies.
-
 **Domain / Industry**
 Energy systems, power utilities, and public-sector energy planning.
-
 **Target Audience**
 Energy utilities, system operators, regulators, and policy planners.
-
 **Real-World Impact**
 Improved forecasts can reduce load-shedding risk, optimize generation scheduling, and inform long-term infrastructure investment.
-
 **Domain Knowledge / Prior Work**
 The project builds on established load-forecasting literature showing that demand is driven by weather, seasonality, and economic growth.
 
+
+**Procedure and Project Overview**
+## Collecting the data
+## Data Sources and structure: 
+Median studio price data by zip code in NYC area was obtained from Zillow (this project focuses on the studio rental prices with the assumption that gentrifying area tends to attract younger generations).
+Yelp data (up to 1,000 businesses for each zip code in NYC are) was obtained using Yelp API.
+Demographic data, including education level, racial diversity of the neighborhood, income level, was obtained from the American Community Survey, Census 2016 (by zip code level as well).
+
+**Variables types and ranges**
+
+**Data Cleaning and EDA**
+Data Cleaning and EDA
+- How were the missing values treated
+
+**Demand trends and seasonality**
+
+**Weather and macroeconomic relationships**
+
+
+**Results**
+
+
 ---
 
-## 2. Data Understanding 
-
-* Data source and structure
-* Variable types and ranges
-* Missing values
-* Demand trends and seasonality
-* Weather and macroeconomic relationships
-
-**What to Explicitly Add**:
-
-* Data source citation (ERA5 for weather, World Bank for GDP/population)
-* Statement that data is **daily, national-level, 2022–2027**
-
----
-
-## 3. Data Preparation (GOOD — NEEDS STRUCTURE & JUSTIFICATION)
-
+## 3. Data Preparation 
 ### Storage & Types
 
 * CSV file, mixed numeric and categorical variables
 * Daily time index
-
-### Cleaning Steps (ALREADY DONE)
-
-* Date parsing and sorting
-* Duplicate check
-* Column name normalization
-
-### Missing Values
-
-* Demand interval bounds contain ~33% missing values
-* These columns were excluded to avoid introducing bias
+s
 
 ### Feature Engineering (STRONG)
 
@@ -74,8 +61,7 @@ Aggregated demand variables derived from the target were removed to prevent targ
 
 ---
 
-## 4. Feature Selection (ADD A SHORT JUSTIFICATION)
-
+## 4. Feature Selection 
 **Rationale**
 Features were selected to balance domain relevance, statistical signal, and leakage prevention.
 
@@ -92,7 +78,7 @@ Features were selected to balance domain relevance, statistical signal, and leak
 
 ---
 
-## 5. Time-Series–Aware Train/Test Split (MUST ADD)
+## 5. Time-Series–Aware Train/Test Split 
 
 ### Why This Matters
 
@@ -132,7 +118,7 @@ Supervised **regression**.
 
 ---
 
-## 7. Evaluation (ADD CLEAR METRICS)
+## 7. Evaluation 
 
 ### Metrics
 
@@ -166,13 +152,6 @@ Results reported via plots, metrics, and feature importance charts.
 Model could be deployed as a forecasting API or dashboard for planners.
 
 ---
-
-## 9. Tools & Methodologies (ADD SUMMARY CELL)
-
-* Python (pandas, numpy)
-* Visualization (matplotlib, seaborn)
-* Modeling (scikit-learn)
-* Local Jupyter Notebook environment
 
 
 <img width="1536" height="1024" alt="demand forecasting" src="https://github.com/user-attachments/assets/74e58cfd-f072-4eb0-bcd5-474655daa7f7" />
