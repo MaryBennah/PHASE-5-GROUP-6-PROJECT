@@ -18,7 +18,7 @@ Weather variables: temperature, rainfall, humidity (synthetic but realistic)
 Calendar features: date, weekday, weekend indicator, season
 Macroeconomic indicators: GDP (current USD billions), population
 Geographic identifiers: latitude, longitude (static)
-The dataset contains 2,191 daily observations and 21 variables. All data are publicly accessible or derived from public sources.
+The dataset contains 2,191 daily observations and 21 variables. The dataset is publicly accessible
 
 ## 3. Data Preparation 
 
