@@ -2,7 +2,13 @@
 
 ## Business Understanding
 Agricultural production in Kenya is highly sensitive to climatic variability, land-use dynamics, and long-term structural change. Accurate prediction of crop yields and production is therefore essential for food security planning and agricultural policy formulation.
+
+## Data Understanding
 This project applies and compares baseline statistical models and ensemble machine-learning approaches to predict crop production in Kenya using long-term FAOSTAT panel data (1961–2021). Particular emphasis is placed on avoiding target leakage, handling temporal non-stationarity, and evaluating model generalizability using out-of-sample performance.
+
+## Data Cleaning
+
+## Modeling
 
 
 ## Long-Term Yield Growth and Structural Change
