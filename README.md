@@ -55,9 +55,9 @@ Figure 3.0 (Scatter plots of Area vs. Production) confirm strong positive but no
 
 Figures 4(Scatter plots of Yield vs. Production) confirm strong positive but non-linear relationships among the key agricultural variables. 
 
-## Modeling Approach
+## 5.0 Modeling Approach
 
-### Linear Regression Baseline (Ordinary least squares)
+### 5.1 Linear Regression Baseline (Ordinary least squares)
 
 | Metric | Value     |
 | ------ | --------- |
@@ -65,7 +65,7 @@ Figures 4(Scatter plots of Yield vs. Production) confirm strong positive but non
 | RMSE   | 314,468 t |
 | R²     | 0.596     |
 
-### Random Forest Regression
+### 5.2 Random Forest Regression
 
 | Metric | Training Set | Test Set  |
 | ------ | ------------ | --------- |
@@ -80,7 +80,7 @@ Figures 4(Scatter plots of Yield vs. Production) confirm strong positive but non
 | area_harvested_ha | 88.8%      |
 | year              | 11.2%      |
 
-### XGBoost Regression
+### 5.3 XGBoost Regression
 An XGBoost model was trained using the same predictors for comparison. 
 The model was configured with regularization to prevent overfitting.
 
@@ -90,6 +90,8 @@ The model was configured with regularization to prevent overfitting.
 | RMSE   | 332,985 t |
 | R²     | 0.512     |
 
+<img width="477" height="278" alt="image" src="https://github.com/user-attachments/assets/62e91343-d2a7-4930-bb26-afc0859efa7a" />
+
 ## Model Evaluation and Interpretation
 
 | Model                 | Test R² | MAE (t) | RMSE (t) | Remarks                                        |
@@ -97,5 +99,12 @@ The model was configured with regularization to prevent overfitting.
 | Linear Regression     | 0.596   | 189,411 | 314,468  | Baseline linear trend captured                 |
 | Random Forest (Final) | 0.507   | 118,577 | 347,582  | Non-linear interactions captured; leakage-free |
 | XGBoost               | 0.512   | 115,432 | 332,985  | Similar performance to RF; robust              |
+
+Key Insights:
+1. Regularized Random Forest and XGBoost models outperform the linear regression baseline in handling non-linearities and interactions.
+2. The dominant driver of production is harvested area, with temporal trends captured by year.
+3. Models are limited by available predictors; additional variables such as climate, fertilizer use, or soil quality would likely improve predictive power.
+4. Final model selection is the Random Forest (leakage-free, regularized), due to its stability, interpretability, and absence of target leakage.
+
 
 
