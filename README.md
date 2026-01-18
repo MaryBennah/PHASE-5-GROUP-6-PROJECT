@@ -27,7 +27,7 @@ Production = Harvested Area × Yield
 
 Including yield as a predictor when forecasting production introduces severe target leakage, artificially inflating model performance. This project explicitly identifies, diagnoses, and corrects for leakage by restricting predictors to causally and temporally valid features.
 
-## 3.0 Data Cleaning and Preprocessing
+## 3.0 Data Cleaning 
 The following steps were applied to ensure data quality and analytical robustness:
 
 1. Selection of Relevant Variables
@@ -37,6 +37,18 @@ The following steps were applied to ensure data quality and analytical robustnes
 5. Construction of time-ordered panel structures
 6. Outlier assessment and diagnostics
 7. Feature transformation and basic feature engineering
+
+ ## 3.1 Feature Engineering
+To capture agricultural dynamics, the following features were created:
+1. Lagged variables (1–3 years)
+2. Rolling averages (3-year and 5-year)
+
+Year-over-year growth rates:
+Outlier indicators
+1. Data quality flags as model features
+1. Time trend variables
+
+All features are constructed to avoid look-ahead bias.
 
 ## 4.0 Exploratory Data Analysis
 
