@@ -40,13 +40,13 @@ The following steps were applied to ensure data quality and analytical robustnes
 3. Standardization and renaming of variables
 4. Filtering based on data availability and reliability
 5. Enforcement of consistent units:
-   -Production → tonnes
-   -Area harvested → hectares
-   Yield → hg/ha
-6. Construction of time-ordered panel structures
-7. Outlier assessment and diagnostics
-8. Conversion of data types
-9. Normalization of categorical text fields
+   a. Production → tonnes
+   b. Area harvested → hectares
+   c. Yield → hg/ha
+7. Construction of time-ordered panel structures
+8. Outlier assessment and diagnostics
+9. Conversion of data types
+10. Normalization of categorical text fields
 
  ## 3.1 Panel construction and Feature Engineering
  
@@ -178,7 +178,7 @@ Performance is comparable to the Random Forest model, indicating robustness of e
 | XGBoost               | 0.512   | 115,432 | 332,985  | Comparable to RF; robust               |
 
 
-   Key Insights:
+Key Insights:
 1. Ensemble models outperform the linear baseline in capturing non-linear relationships
 2. Harvested area is the dominant driver of production
 3. Leakage-aware evaluation substantially reduces apparent performance but improves real-world validity
