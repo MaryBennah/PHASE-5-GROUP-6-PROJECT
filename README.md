@@ -25,7 +25,7 @@ This project focuses exclusively on crop production, retaining only the followin
 2. Area harvested (hectares)
 3. Yield (hectograms per hectare)
 
-Animal-related variables were excluded due to a lot of missing values
+Animal-related variables were excluded due to a lot of missingness and conceptual misalignment with crop production analysis.
 
 The dataset captures long-term trends in:
 1. Agricultural intensification
@@ -33,25 +33,22 @@ The dataset captures long-term trends in:
 3. Technological change
 4. Climatic variability
 
-## 3.0 Data Cleaning 
+## 3.0 Data Cleaning and Preparation
 The following steps were applied to ensure data quality and analytical robustness:
-
-1. Selection of Relevant Variables
-2. Handling Missing and Inconsistent Values
-3. Standardization
-4. Renaming of Variables
-5. Filtering based on data availability and reliability
+1. Selection of relevant variables
+2. Handling missing and inconsistent values
+3. Standardization and renaming of variables
+4. Filtering based on data availability and reliability
+5. Enforcement of consistent units:
+   -Production → tonnes
+   -Area harvested → hectares
+   Yield → hg/ha
 6. Construction of time-ordered panel structures
 7. Outlier assessment and diagnostics
-8. Retained crop-related elements only
-9. Enforced consistent units:
-    - Production → tonnes
-    - Area harvested → hectares
-    - Yield → hg/ha
-10. Converted data types and removed invalid or missing records
-11. Normalized categorical text fields
+8. Conversion of data types
+9. Normalization of categorical text fields
 
- ## 3.1 Feature Engineering
+ ## 3.1 Panel construction and Feature Engineering
  
 ### 3.2 Panel Construction
 The dataset was reshaped from long to wide format, producing one row per:
@@ -104,6 +101,10 @@ Figure 3.0 (Scatter plots of Area vs. Production) confirm strong positive but no
 Figures 4(Scatter plots of Yield vs. Production) confirm strong positive but non-linear relationships among the key agricultural variables. 
 
 ## 5.0 Modeling Approach
+Predictor Variables
+1. Year
+2. Area harvested (ha)
+3. Yield (t/ha)
 
 ### 5.1 Model Design Principles: 
 1. Leakage-free feature selection
@@ -114,6 +115,14 @@ Figures 4(Scatter plots of Yield vs. Production) confirm strong positive but non
 
 ### 5.2 Linear Regression Baseline (Ordinary least squares)
 
+#### 5.2.1 Naïve Mean Predictor
+Used as a minimum performance benchmark.
+R² ≈ −0.002
+
+Indicates that simple averaging is inadequate for production forecasting.
+
+#### 5.2.2 Linear Regression
+
 | Metric         | Value     |
 | ---------------| --------- |
 | MAE            | 189,411 t |
@@ -122,7 +131,11 @@ Figures 4(Scatter plots of Yield vs. Production) confirm strong positive but non
 
 The linear model captures broad temporal trends but is limited in modeling non-linear relationships.
 
-### 5.3 Random Forest Regression
+### 5.3 Ridge and Lasso Regression
+
+Regularization had minimal impact, indicating limited multicollinearity in the baseline feature set.
+
+### 5.4 Random Forest Regression
 
 | Metric         | Training Set     | Test Set  |
 | ------------   | ---------------- | --------- |
@@ -151,26 +164,44 @@ An XGBoost model was trained using identical predictors and regularization to pr
 <img width="477" height="278" alt="image" src="https://github.com/user-attachments/assets/62e91343-d2a7-4930-bb26-afc0859efa7a" />
 Performance is comparable to Random Forest, indicating robustness of ensemble methods under constrained feature spaces.
 
+<img width="477" height="278" alt="image" src="https://github.com/user-attachments/assets/614dd53b-121c-4544-8f6c-655f93d535bd" />
+
+Performance is comparable to the Random Forest model, indicating robustness of ensemble methods under constrained feature spaces.
+
+
 ## 6.0 Model Evaluation and Interpretation
 
-| Model                 | Test R² | MAE (t) | RMSE (t) | Remarks                                        |
-| --------------------- | ------- | ------- | -------- | ---------------------------------------------- |
-| Linear Regression     | 0.596   | 189,411 | 314,468  | Baseline linear trend captured                 |
-| Random Forest (Final) | 0.507   | 118,577 | 347,582  | Non-linear interactions captured; leakage-free |
-| XGBoost               | 0.512   | 115,432 | 332,985  | Similar performance to RF; robust              |
+| Model                 | Test R² | MAE (t) | RMSE (t) | Remarks                                |
+| --------------------- | ------- | ------- | -------- | -------------------------------------- |
+| Linear Regression     | 0.596   | 189,411 | 314,468  | Captures linear temporal trends        |
+| Random Forest (Final) | 0.507   | 118,577 | 347,582  | Non-linear interactions; leakage-aware |
+| XGBoost               | 0.512   | 115,432 | 332,985  | Comparable to RF; robust               |
+
 
    Key Insights:
-1. Ensemble models outperform the linear baseline in capturing non-linearities and interactions
-2. Harvested area is the dominant driver of production, with temporal trends captured via year
-3. Leakage-free modeling substantially reduces apparent performance but improves real-world validity
-4. Predictive power is constrained by limited covariates; incorporation of climate, fertilizer use, soil quality, and policy variables would likely improve forecasts
+1. Ensemble models outperform the linear baseline in capturing non-linear relationships
+2. Harvested area is the dominant driver of production
+3. Leakage-aware evaluation substantially reduces apparent performance but improves real-world validity
+4. Predictive power is constrained by limited covariates
 
 ## 7.0 Final Model Selection
 
-The Random Forest (leakage-free, regularized) model is selected as the final model due to its:
-1. Stability
-2. Interpretability
+The Random Forest regression model is selected as the final model due to its:
+1. Stability across training and test sets
+2. Interpretability through feature importance
 3. Robust out-of-sample performance
-4. Strict avoidance of target leakage
+4. Leakage-aware evaluation framework
+
+## 8.0 Limitations and Future Work
+
+1. No climate or weather covariates included
+2. No spatial disaggregation within Kenya
+3. Crop-specific models may outperform pooled models
+
+## 9.0 Future Work
+1. Rainfall and temperature data
+2. Fertilizer use
+3. Soil quality indicators
+4. Policy and institutional variables
 
 
