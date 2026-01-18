@@ -152,10 +152,6 @@ Regularization had minimal impact, indicating limited multicollinearity in the b
 
 The Random Forest captures non-linear interactions while maintaining generalization under leakage-free constraints.
 
-
-
-
-
 ### 5.4 XGBoost Regression
 An XGBoost model was trained using identical predictors and regularization to prevent overfitting.
 
@@ -164,9 +160,6 @@ An XGBoost model was trained using identical predictors and regularization to pr
 | MAE              | 115,432 t |
 | RMSE             | 332,985 t |
 | R²               | 0.512     |
-
-<img width="477" height="278" alt="image" src="https://github.com/user-attachments/assets/62e91343-d2a7-4930-bb26-afc0859efa7a" />
-Performance is comparable to Random Forest, indicating robustness of ensemble methods under constrained feature spaces.
 
 <img width="477" height="278" alt="image" src="https://github.com/user-attachments/assets/614dd53b-121c-4544-8f6c-655f93d535bd" />
 
